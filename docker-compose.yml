@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  php:
+    image: app-php
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+
+  nginx:
+    image: nginx:1.24-alpine
+    depends_on:
+      - php
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+    ports:
+      - "80:80"
+    links:
+      - php
+
+volumes:
+  php_socket:

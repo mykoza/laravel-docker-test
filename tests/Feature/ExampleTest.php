@@ -1,7 +1,8 @@
 <?php
 
 it('returns a successful response', function () {
-    $response = $this->get('/');
+    /** @var Tests\TestCase $this */
+    $response = $this->get('/info');
 
     $response->assertStatus(200);
 });
